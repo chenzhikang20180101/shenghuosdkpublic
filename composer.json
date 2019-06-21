@@ -1,5 +1,5 @@
 {
-    "name": "shenghuo/php-sdk",
+    "name": "shenghuo/shh-sdk",
     "description": "圣火sdk",
     "license": "MIT",
     "authors": [
@@ -14,7 +14,7 @@
     "minimum-stability": "dev",
     "autoload":{
         "psr-4":{
-            "Shenghuo\\":"php-sdk/"
+            "Shenghuo\\":"php-core/"
         }
     }
 }
