@@ -12,6 +12,18 @@ function sdkAjaxApiReturn($code=SUCCESS,$data=[],$msg='',$time=""){
 }
 
 /**
+ * 检查手机号码格式
+ * @param $mobile 手机号码
+ */
+function sdk_check_mobile($mobile)
+{
+    if (preg_match('/^1[3456789]\d{9}$/', $mobile)) {
+        return true;
+    }
+    return false;
+}
+
+/**
  * curl获取请求文本内容
  * @return array
  */

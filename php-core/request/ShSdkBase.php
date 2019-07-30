@@ -4,14 +4,16 @@ namespace Shenghuo\request;
  * author:czk
  * time:2019-06-18
  */
-require_once './vendor/shenghuo/shh-sdk/php-core/ShSdkInterFaceName.php';
-require_once './vendor/shenghuo/shh-sdk/php-core/ShSdkConfig.php';
-require_once './vendor/shenghuo/shh-sdk/php-core/ShSdkCommon.php';
+require_once dirname(dirname(__FILE__))."/index.php";
+require_once dirname(dirname(__FILE__))."/ShSdkInterFaceName.php";
+require_once dirname(dirname(__FILE__))."/ShSdkConfig.php";
+require_once dirname(dirname(__FILE__))."/ShSdkCommon.php";
 
 class ShSdkBase
 {
-	public $appId,$appSecret,$privateKey,$publicKey,$sign;
+	public $appId,$appSecret,$privateKey,$publicKey,$sign,$value;
 	public function __construct($config){
+
 		if (empty($config)) {
 			return sdkReturnArr(FAIL,[],"获取项目app配置失败");
 		}
@@ -19,6 +21,18 @@ class ShSdkBase
 		$this->appSecret  = $config['app_secret'];
 		$this->privateKey = $config['private_key'];
 		$this->publicKey  = $config['public_key'];
+	}
+
+	public function setValue($data){
+    	$this->values = $data;
+	}
+
+	public function setDataAppid(){
+    	$this->values['app_id'] = $this->appId;
+	}
+
+	public function setDataSign(){
+    	$this->values['sign'] = $this->MakeSign();
 	}
 
 	/**
@@ -46,7 +60,7 @@ class ShSdkBase
         $buff = "";
         foreach ($this->values as $k => $v)
         {
-            if($k != "sign" && $v != "" && !is_array($v)){
+            if($k != "sign" && $v !== "" && !is_array($v)){
                 $buff .= $k . "=" . $v . "&";
             }
         }
@@ -58,15 +72,14 @@ class ShSdkBase
      * 生成签名
      * @return 签名，本函数不覆盖sign成员变量，如要设置签名需要调用SetSign方法赋值
      */
-    public function MakeSign($data)
+    public function MakeSign()
     {
-    	$this->values = $data;
         //签名步骤一：按字典序排序参数
         ksort($this->values);
         $string = $this->ToUrlParams();
         //签名步骤二：在string后加入KEY
         $string = $string . "&key=".$this->appSecret;
-    	// p($string);
+        // dump($string);
         //签名步骤三：MD5加密
         $string = md5($string);
         //签名步骤四：所有字符转为大写
