@@ -10,9 +10,9 @@ use Shenghuo\request\ShSdkValidate;
 class ShSdkUserApi extends ShSdkBase
 {
 	public $valid;
-	public function __construct($config)
+	public function __construct()
 	{
-		parent::__construct($config);
+		parent::__construct();
 		$this->valid = new ShSdkValidate();
 	}
 

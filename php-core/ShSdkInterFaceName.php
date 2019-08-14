@@ -27,3 +27,6 @@ const SDK_WALLET          = 'user/Wallet/getWallets';	//钱包余额
 const SDK_GET_USER 	 	  = 'user/MemberInfo/getUser';	//获取用户信息
 const SDK_USER_SUPERIOR   = 'user/Users/getUserSuperior';
 const SDK_USER_BASE       = 'user/Users/getUserByCrmUid';	//通过crmuid获取用户基本信息
+
+// v_0.6
+const SDK_USER_LIST       = 'user/Users/getMultUsers';	//后台通过openid批量获取用户信息

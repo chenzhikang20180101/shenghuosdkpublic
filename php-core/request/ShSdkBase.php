@@ -12,15 +12,20 @@ require_once dirname(dirname(__FILE__))."/ShSdkCommon.php";
 class ShSdkBase
 {
 	public $appId,$appSecret,$privateKey,$publicKey,$sign,$value;
-	public function __construct($config){
+	public function __construct(){
 
-		if (empty($config)) {
-			return sdkReturnArr(FAIL,[],"获取项目app配置失败");
-		}
-		$this->appId      = $config['app_id'];
-		$this->appSecret  = $config['app_secret'];
-		$this->privateKey = $config['private_key'];
-		$this->publicKey  = $config['public_key'];
+		// if (empty($config)) {
+		// 	return sdkReturnArr(FAIL,[],"获取项目app配置失败");
+		// }
+		// $this->appId      = $config['app_id'];
+		// $this->appSecret  = $config['app_secret'];
+		// $this->privateKey = $config['private_key'];
+		// $this->publicKey  = $config['public_key'];
+
+		$this->appId      = CRM_APP_ID;
+		$this->appSecret  = CRM_APP_SECRET;
+		$this->privateKey = CRM_PRIVATE_KEY;
+		$this->publicKey  = CRM_PUBLIC_KEY;
 	}
 
 	public function setValue($data){

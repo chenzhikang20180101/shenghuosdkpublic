@@ -9,9 +9,9 @@ use think\Model;
 use Shenghuo\request\ShSdkValidate;
 class ShSdkWalletApi extends ShSdkUserApi
 {
-	public function __construct($config)
+	public function __construct()
 	{
-		parent::__construct($config);
+		parent::__construct();
 	}
 
 }

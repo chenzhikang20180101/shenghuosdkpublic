@@ -133,8 +133,8 @@ class ShSdkValidate extends Validate
 	}
 
 	public function sdkCheckPort($port){
-		$clientPort = ['h5','iOS','Android'];
-		if (in_array($port, $clientPort)) {
+		$clientPort = ['h5','ios','android'];
+		if (in_array(strtolower($port), $clientPort)) {
 			return true;
 		}
 	    return false;
